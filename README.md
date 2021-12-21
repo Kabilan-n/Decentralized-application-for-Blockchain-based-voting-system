@@ -35,27 +35,27 @@ Another dependency is Metamask. Metamask is a chrome extension that helps us to 
 To start with dapp, instead of starting from scratch we can use some of the predefined skeletons in the truffle box then on top of that we can create our voting dapp. 
 The framework looks like this
 
-build/contracts
-  | Election.json
-  | Migration.json
-contracts
-  | Election.sol
-  | Migration.sol
-migrations
-  | 1_initial_migration.js
-  | 2_deploy_contracts.js
-node_modules
-src
-  | css
-  | fonts
-  | images
-  | js
-	  | app.js
-	  | truffle-contract.js
-  | index.html
-test
-  | election.js
-truffle.js
+		build/contracts
+		  | Election.json
+		  | Migration.json
+		contracts
+		  | Election.sol
+		  | Migration.sol
+		migrations
+		  | 1_initial_migration.js
+		  | 2_deploy_contracts.js
+		node_modules
+		src
+		  | css
+		  | fonts
+		  | images
+		  | js
+			  | app.js
+			  | truffle-contract.js
+		  | index.html
+		test
+		  | election.js
+		truffle.js
 
 contracts dir: this directory contains all the smart contracts. 
 migrations dir: this directory contains all of the migration files. When a smart contract is deployed to the blockchain, theblockchain's state is updated, and therefore needs a migration.
@@ -68,15 +68,15 @@ truffle.js file: this is the main configuration file for the Truffle project.
 
 Before starting with our contract we need to specify the version of solidity this contract is using by declaring the solidity version with the pragma solidity statement. Like class here the smart contracts start with a contract keyword. As multiple candidates contest in the election we need to store multiple attributes about each candidate like candidate's id, name, and vote count. This can be created using Solidity Struct, allowing us to create our own structure types. 
 
-pragma solidity >=0.5.16;
+	pragma solidity >=0.5.16;
 
-contract Election {
-    // Model a Candidate
-    struct Candidate {
-        uint id;
-        string name;
-        uint voteCount;
-    }
+	contract Election {
+	    // Model a Candidate
+	    struct Candidate {
+		uint id;
+		string name;
+		uint voteCount;
+	    }
 
 To store this structure type  Solidity mapping Is used. A mapping in Solidity is like an associative array or a hash, that associates key-value pairs. The key to the mapping is an unsigned integer, and the value is a Candidate structure type. To keep track of the accounts that are already voted we define a voters mapping 
 As of now we have implemented only the voting process. This can be further taken by adding steps like nominating result announcements. For this there needs an event trigger for each of this process. Here we have added a votedEvent event that updates our client-side application when an account has voted.
@@ -143,18 +143,18 @@ It implements require statements that will stop execution if the conditions are 
 
 Once a data is written or a transaction happens on a blockchain it can not be reversed, blockchains are irreversible and immutable. So before publishing the contracts on the blockchain we need to test them with test scripts. 
 
-var Election = artifacts.require("./Election.sol");
+	var Election = artifacts.require("./Election.sol");
 
-contract("Election",function(accounts) {
-    var electionInstance;
+	contract("Election",function(accounts) {
+	    var electionInstance;
 
-    it("Initializes with two candidates", function(){
-        return Election.deployed().then(function(instance){
-            return instance.candidatesCount();
-        }).then(function(count){
-            assert.equal(count,2);
-        });
-    });
+	    it("Initializes with two candidates", function(){
+		return Election.deployed().then(function(instance){
+		    return instance.candidatesCount();
+		}).then(function(count){
+		    assert.equal(count,2);
+		});
+	    });
      
 
 This test checks that the contract was initialized with the correct number of candidates by checking the candidates count is equal to 2.
