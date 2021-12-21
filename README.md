@@ -82,38 +82,38 @@ To store this structure type  Solidity mapping Is used. A mapping in Solidity is
 As of now we have implemented only the voting process. This can be further taken by adding steps like nominating result announcements. For this there needs an event trigger for each of this process. Here we have added a votedEvent event that updates our client-side application when an account has voted.
 
 
-    // Read/write candidates
-    mapping(uint => Candidate) public candidates;
+	    // Read/write candidates
+	    mapping(uint => Candidate) public candidates;
 
-   // store voted accounts
-   mapping(address => bool) public voters;
+	   // store voted accounts
+	   mapping(address => bool) public voters;
 
-   event votedEvent (
-       uint indexed _candidateId
-   );
+	   event votedEvent (
+	       uint indexed _candidateId
+	   );
 
-    // Store Candidates Count
-    uint public candidatesCount;
+	    // Store Candidates Count
+	    uint public candidatesCount;
 
 In solidity we can't  get the size of mapping, so for tracking the number of candidates contesting in an election we use an unsigned integer as a candidate cache, this gets updated every time a candidate is added. 
 
 
-   function addCandidate (string memory _name) private {
-        candidatesCount ++;
-        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
-    }
-   constructor () public {
-       addCandidate("Candidate 1");
-       addCandidate("Candidate 2");
-   }   function addCandidate (string memory _name) private {
-        candidatesCount ++;
-        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
-    }
-   constructor () public {
-       addCandidate("Candidate 1");
-       addCandidate("Candidate 2");
-   }
-   
+	   function addCandidate (string memory _name) private {
+		candidatesCount ++;
+		candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+	    }
+	   constructor () public {
+	       addCandidate("Candidate 1");
+	       addCandidate("Candidate 2");
+	   }   function addCandidate (string memory _name) private {
+		candidatesCount ++;
+		candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+	    }
+	   constructor () public {
+	       addCandidate("Candidate 1");
+	       addCandidate("Candidate 2");
+	   }
+
 
 The function addCandidate is used to add a candidate to the mapping. This function takes the candidate's name as an argument. Each and every time this function is called, the candidate cache will be incremented so that a new candidate is added to the mapping. Then we update the mapping with a new Candidate struct, using the current candidate count as the key. This Candidate struct is initialized with the candidate id from the current candidate count, the name from the function argument, and the initial vote count to 0. Visibility of this function is kept private as it can be called only within this contract. 
 The candidates are added by calling this function within the constructor.
