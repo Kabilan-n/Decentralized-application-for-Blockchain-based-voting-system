@@ -1,7 +1,5 @@
 # Decentralized-application-for-Blockchain-based-voting-system
 
-![image](https://user-images.githubusercontent.com/60337704/147132124-3421deb1-f277-458e-a6de-e5f2d2c3302e.png)
-
 
 ## Smart Contracts
 
