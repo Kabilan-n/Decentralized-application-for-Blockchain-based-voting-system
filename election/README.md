@@ -222,10 +222,12 @@ We can also assert that the transaction failed and that an error message is retu
 In this test, we’ll try to vote with the account which hasn't voted before. Then we'll cast a vote with that account. Then we'll try to vote again. We'll assert that an error has occurred here. We can inspect the error message, and ensure that no candidates received votes, just like the previous test. 
 
 Image
-  
 When our smart contracts passes all the test it’s ready to deploy along with front end created using HTML, CSS and Js
 This project can be further extended by adding some events like nomination and result announcement and we can also give a certain period for each event once the time is up the events automatically switch to the next event. 
 This is how the front-end application for the client side will appear
 
+![EL](https://user-images.githubusercontent.com/60337704/147131794-7fec723b-2bce-4255-9264-db84de5d4fcb.png)
+
 When a voter casts a vote he needs to pay some gas in ethers. 
- 
+
+![mm](https://user-images.githubusercontent.com/60337704/147131817-827f3caa-0af4-4772-b803-54e858d30ace.png)
